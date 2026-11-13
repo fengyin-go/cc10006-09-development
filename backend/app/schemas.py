@@ -19,6 +19,10 @@ class ActionResult(BaseModel):
     ok: bool
     message: str
     entry: dict[str, Any] | None = None
+    blocking: list[dict[str, Any]] = Field(default_factory=list)
+    dependencies: list[dict[str, Any]] = Field(default_factory=list)
+    changed: bool = False
+    details: dict[str, Any] = Field(default_factory=dict)
 
 
 class EntryPayload(BaseModel):
@@ -100,6 +104,7 @@ class LakezoneEntry(BaseModel):
     field_5: str | None = None  # 冷热分层
     field_6: str | None = None  # 归档路径
     field_7: str | None = None  # 小文件合并
+    field_8: str | None = None  # 分区值
 
 class StreamEntry(BaseModel):
     """流处理作业明细结构。"""
